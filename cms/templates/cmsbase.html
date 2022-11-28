@@ -6,9 +6,21 @@
 
 {% endblock %}
 
-{% block template %}
-    
-    {% block page %}
+{% block page %}
+
+    <div class="liner"></div>
+
+    <header>
+
+        <h1>
+            SportsAdministrator
+        </h1>
+
+    </header>
+
+    <div class="liner"></div>
+
+    {% block content %}
     {% endblock %}
 
     &copy; SportsAdministrator {% now "Y" %}
