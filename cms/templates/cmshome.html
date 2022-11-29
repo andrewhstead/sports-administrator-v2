@@ -1,7 +1,27 @@
 {% extends "cmsbase.html" %}
 
+{% block title %}
+
+    <title>Home | SportsAdministrator CMS</title>
+
+{% endblock %}
+
 {% block content %}
 
     Site Administration
+
+    {% if competitions %}
+
+        {% for competition in competitions %}
+
+            {{ competition.name }}<br />
+
+        {% endfor %}
+
+    {% else %}
+
+        You haven't set up any competitions yet.
+
+    {% endif %}
 
 {% endblock %}
