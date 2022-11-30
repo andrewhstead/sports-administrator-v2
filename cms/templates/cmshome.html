@@ -8,20 +8,32 @@
 
 {% block content %}
 
-    Site Administration
+    <section id="competitions">
 
-    {% if competitions %}
+        <div class="cms-header">
 
-        {% for competition in competitions %}
+            COMPETITIONS
 
-            {{ competition.name }}<br />
+        </div>
 
-        {% endfor %}
+        <div class="cms-details">
 
-    {% else %}
+            {% if competitions %}
 
-        You haven't set up any competitions yet.
+                {% for competition in competitions %}
 
-    {% endif %}
+                    {{ competition.name }}<br />
+
+                {% endfor %}
+
+            {% else %}
+
+                You haven't set up any competitions yet.
+
+            {% endif %}
+
+        </div>
+
+    </section>
 
 {% endblock %}
