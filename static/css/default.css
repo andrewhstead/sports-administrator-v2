@@ -15,6 +15,13 @@ header {
     height: 3px;
     background-color: #7ced84;
 }
+footer {
+    background-color: #7ced84;
+    color: white;
+    padding: 0 10px;
+    border-top: 3px solid white;
+    border-bottom: 3px solid white;
+}
 
 h1 {
     font-style: italic;
