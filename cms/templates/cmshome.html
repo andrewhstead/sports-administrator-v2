@@ -8,6 +8,14 @@
 
 {% block content %}
 
+    {% if user.is_authenticated %}
+
+        <div class="page-header">
+            Welcome, {{ user }}
+        </div>
+
+    {% endif %}
+
     <section id="competitions">
 
         <div class="cms-header">
@@ -17,6 +25,7 @@
         </div>
 
         <div class="cms-details">
+
 
             {% if competitions %}
 

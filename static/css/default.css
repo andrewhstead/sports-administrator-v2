@@ -32,6 +32,10 @@ h1 {
     height: 15px;
     width: 15px;
 }
+.page-header {
+    font-style: italic;
+    font-size: 1.5em;
+}
 
 #cms-page {
     margin: 10px;
