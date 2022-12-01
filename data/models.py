@@ -52,6 +52,7 @@ class Venue(models.Model):
     country = models.ForeignKey(Country, related_name='venue_country', on_delete=models.CASCADE)
     latitude = models.FloatField(default=0)
     longitude = models.FloatField(default=0)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
@@ -62,6 +63,7 @@ class Competition(models.Model):
     name = models.CharField(max_length=100)
     sport = models.ForeignKey(Sport, related_name='competition_sport', on_delete=models.CASCADE)
     country = models.ForeignKey(Country, related_name='competition_country', on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name

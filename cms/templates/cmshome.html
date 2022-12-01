@@ -26,7 +26,6 @@
 
         <div class="cms-details">
 
-
             {% if competitions %}
 
                 {% for competition in competitions %}
@@ -40,6 +39,14 @@
                 You haven't set up any competitions yet.
 
             {% endif %}
+
+        </div>
+
+        <div class="cms-link-button">
+
+            <a href="{% url 'new_competition' %}">
+                New Competition
+            </a>
 
         </div>
 
