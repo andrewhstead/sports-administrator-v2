@@ -5,7 +5,7 @@ body {
 }
 
 header {
-    background-color: #7ced84;
+    background-color: #6bdc73;
     color: white;
     padding: 0 10px;
     border-top: 3px solid white;
@@ -13,10 +13,10 @@ header {
 }
 .liner {
     height: 3px;
-    background-color: #7ced84;
+    background-color: #6bdc73;
 }
 footer {
-    background-color: #7ced84;
+    background-color: #6bdc73;
     color: white;
     padding: 0 10px;
     border-top: 3px solid white;
@@ -36,6 +36,10 @@ h1 {
     height: 15px;
     width: 15px;
 }
+.active-state {
+    margin-right: 10px;
+}
+
 .page-header {
     font-style: italic;
     font-size: 1.5em;
@@ -46,7 +50,7 @@ h1 {
 }
 .cms-header {
     margin: 10px 0 0 0;
-    background-color: #7ced84;
+    background-color: #6bdc73;
     color: white;
     font-weight: bold;
     font-style: italic;
@@ -56,25 +60,25 @@ h1 {
 }
 .cms-details {
     padding: 5px;
-    border: 2px solid #7ced84;
+    border: 2px solid #6bdc73;
     border-top: 0;
 }
 
 .cms-link-button {
     text-align: center;
     margin: 5px auto;
-    background-color: #7ced84;
+    background-color: #6bdc73;
     width: fit-content;
     padding: 5px;
     padding: 0 5px;
     border-radius: 5px;
-    border: 1px solid #38a940;
+    border: 1px solid #279830;
 }
 .cms-link-button:hover {
-    background-color: #6bdc73;
+    background-color: #5acb62;
 }
 .cms-link-button:active {
-    background-color: #49ba51;
+    background-color: #38a940;
 }
 .cms-link-button a {
     text-decoration: none;
@@ -86,21 +90,21 @@ h1 {
 .cms-button {
     text-align: center;
     margin: 5px auto;
-    background-color: #7ced84;
+    background-color: #6bdc73;
     width: fit-content;
     padding: 0 5px;
     border-radius: 5px;
-    border: 1px solid #38a940;
+    border: 1px solid #279830;
     color: white;
     font-family: 'Archivo Narrow';
     font-size: 1em;
 }
 .cms-button:hover {
-    background-color: #6bdc73;
+    background-color: #5acb62;
     text-decoration: underline;
 }
 .cms-button:active {
-    background-color: #49ba51;
+    background-color: #38a940;
     outline: none;
 }
 
