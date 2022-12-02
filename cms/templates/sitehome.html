@@ -1,0 +1,70 @@
+{% extends "cmsbase.html" %}
+
+{% block title %}
+
+    <title>Home | SportsAdministrator Site Admin</title>
+
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_superuser %}
+
+        <div class="page-header">
+            Welcome, {{ user }}
+        </div>
+
+        <h1>
+            Site Admin Home
+            | <a class="text-link" href="{% url 'cms_home' %}">CMS</a>
+        </h1>
+
+        <section id="users">
+
+            <div class="cms-header">
+
+                USERS
+
+            </div>
+
+            <div class="cms-details">
+
+                {% if users %}
+
+                    {% for user in users %}
+
+                        <div class="list-item">
+
+                            {{ user.name }}
+
+                        </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    No users have been created yet.
+
+                {% endif %}
+
+            </div>
+
+            <div class="cms-link-button">
+
+                <a href="{% url 'new_user' %}">
+                    Add New User
+                </a>
+
+            </div>
+
+        </section>
+
+    {% else %}
+
+        <div class="page-header">
+            Sorry, you don't have permission to view this page.
+        </div>
+
+    {% endif %}
+
+{% endblock %}

@@ -112,7 +112,7 @@ h1 {
     color: #ffffff;
     text-decoration: none;
 }
-.list-link {
+.list-link, .text-link {
     margin-left: 5px;
     color: #38a940;
     text-decoration: none;

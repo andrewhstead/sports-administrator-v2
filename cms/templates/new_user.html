@@ -1,0 +1,22 @@
+{% extends "cmsbase.html" %}
+
+{% block title %}
+
+	<title>New User | Site Admin | SportsAdministrator</title>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="page-header">
+        NEW USER
+    </div>
+
+    <!-- Form for creating a new user. -->
+    <form id="default-form" enctype="multipart/form-data" role="form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="cms-button" type="submit">{{ button_text }}</button>
+    </form>
+
+{% endblock %}
