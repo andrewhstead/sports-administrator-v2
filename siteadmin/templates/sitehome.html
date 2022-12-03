@@ -59,6 +59,86 @@
 
         </section>
 
+        <section id="sports">
+
+            <div class="cms-header">
+
+                SPORTS
+
+            </div>
+
+            <div class="cms-details">
+
+                {% if sports %}
+
+                    {% for sport in sports %}
+
+                        <div class="list-item">
+
+                            {{ sport.name }}
+
+                        </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    No sports have been added yet.
+
+                {% endif %}
+
+            </div>
+
+            <div class="cms-link-button">
+
+                <a href="{% url 'new_user' %}">
+                    Add New Sport
+                </a>
+
+            </div>
+
+        </section>
+
+        <section id="countries">
+
+            <div class="cms-header">
+
+                COUNTRIES
+
+            </div>
+
+            <div class="cms-details">
+
+                {% if countries %}
+
+                    {% for country in countries %}
+
+                        <div class="list-item">
+
+                            {{ country.name }}
+
+                        </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    No countries have been added yet.
+
+                {% endif %}
+
+            </div>
+
+            <div class="cms-link-button">
+
+                <a href="{% url 'new_user' %}">
+                    Add New Sport
+                </a>
+
+            </div>
+
+        </section>
+
     {% else %}
 
         <div class="page-header">
