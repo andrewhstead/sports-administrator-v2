@@ -24,7 +24,7 @@ urlpatterns = [
     path('', home_views.home_page, name='index'),
     path('admin/', admin.site.urls),
     path('cms/', include('cms.urls')),
-    path('site_admin/', cms_views.site_home, name='site_home'),
+    path('site_admin/', include('siteadmin.urls')),
 ]
 
 if settings.DEBUG is True:

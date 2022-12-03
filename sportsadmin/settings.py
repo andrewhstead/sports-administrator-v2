@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'cms.apps.CmsConfig',
     'data.apps.DataConfig',
+    'siteadmin.apps.SiteadminConfig',
 ]
 
 MIDDLEWARE = [

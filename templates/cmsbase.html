@@ -7,7 +7,13 @@
     <header>
 
         <h1>
-            <a class="plain-link" href="{% url 'cms_home' %}">SportsAdministrator</a>
+            {% if user.is_superuser %}
+                <a class="plain-link" href="{% url 'site_home' %}">
+            {% else %}
+                <a class="plain-link" href="{% url 'cms_home' %}">
+            {% endif %}
+                SportsAdministrator
+            </a>
         </h1>
 
     </header>
