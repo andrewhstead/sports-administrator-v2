@@ -4,7 +4,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from cms.forms import LoginForm, NewCompetitionForm
-from data.models import Competition
+from .models import User
 
 
 # Create your views here.
@@ -14,9 +14,9 @@ def site_home(request):
 
     if user.is_authenticated:
 
-        competitions = Competition.objects.all()
+        users = User.objects.all()
 
-        return render(request, "sitehome.html", {'competitions': competitions})
+        return render(request, "sitehome.html", {'users': users})
 
     else:
 

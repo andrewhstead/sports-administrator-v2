@@ -24,6 +24,7 @@ urlpatterns = [
     path('', home_views.home_page, name='index'),
     path('admin/', admin.site.urls),
     path('cms/', include('cms.urls')),
+    path('login/', cms_views.login, name='login'),
     path('site_admin/', include('siteadmin.urls')),
 ]
 
