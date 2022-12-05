@@ -22,6 +22,7 @@ class User(AbstractUser):
     secondary_color = models.CharField(max_length=10, blank=True, null=True, default="#ffffff")
     primary_text = models.CharField(max_length=10, blank=True, null=True, default="#000000")
     secondary_text = models.CharField(max_length=10, blank=True, null=True, default="#000000")
+    profile_picture = models.ImageField(upload_to="images/users", blank=True, null=True)
     date_modified = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
@@ -43,6 +44,7 @@ class Country(models.Model):
     name = models.CharField(max_length=100)
     short_name = models.CharField(max_length=25)
     abbreviation = models.CharField(max_length=5)
+    flag = models.ImageField(upload_to="images/countries", blank=True, null=True)
     date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):

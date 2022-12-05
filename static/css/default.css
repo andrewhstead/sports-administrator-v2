@@ -125,3 +125,6 @@ h1 {
 #default-form label {
     display: block;
 }
+.list-icon {
+    height: 12px;
+}

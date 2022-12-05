@@ -14,9 +14,9 @@ def site_home(request):
 
     if user.is_authenticated:
 
-        users = User.objects.all().order_by('date_modified')[:10]
-        sports = Sport.objects.all().order_by('date_modified')[:10]
-        countries = Country.objects.all().order_by('date_modified')[:10]
+        users = User.objects.all().order_by('-date_modified')[:10]
+        sports = Sport.objects.all().order_by('-date_modified')[:10]
+        countries = Country.objects.all().order_by('-date_modified')[:10]
 
         args = {
             'users': users,

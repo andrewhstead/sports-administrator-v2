@@ -35,6 +35,9 @@
 
                         <div class="list-item">
 
+                            {% if user.profile_picture %}
+                                <img class="list-icon" src="{{ MEDIA_URL }}{{ user.profile_picture }}" />
+                            {% endif %}
                             {{ user.username }}
 
                         </div>
@@ -83,6 +86,7 @@
 
                         <div class="list-item">
 
+                            <img class="list-icon" src="{{ MEDIA_URL }}{{ sport.icon }}" />
                             {{ sport.name }}
 
                         </div>
@@ -119,7 +123,7 @@
 
             <div class="cms-header">
 
-                COUNTRIES
+                WORLD
 
             </div>
 
@@ -131,7 +135,10 @@
 
                         <div class="list-item">
 
+                            <img class="list-icon" src="{{ MEDIA_URL }}{{ country.flag }}" />
                             {{ country.name }}
+                            > States
+                            > Cities
 
                         </div>
 
