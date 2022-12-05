@@ -4,7 +4,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from cms.forms import LoginForm, NewCompetitionForm
-from .models import User
+from .models import User, Sport, Country
 
 
 # Create your views here.
@@ -14,9 +14,17 @@ def site_home(request):
 
     if user.is_authenticated:
 
-        users = User.objects.all()
+        users = User.objects.all().order_by('date_modified')[:10]
+        sports = Sport.objects.all().order_by('date_modified')[:10]
+        countries = Country.objects.all().order_by('date_modified')[:10]
 
-        return render(request, "sitehome.html", {'users': users})
+        args = {
+            'users': users,
+            'sports': sports,
+            'countries': countries
+        }
+
+        return render(request, "sitehome.html", args)
 
     else:
 

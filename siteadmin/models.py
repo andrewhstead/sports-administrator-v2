@@ -22,6 +22,7 @@ class User(AbstractUser):
     secondary_color = models.CharField(max_length=10, blank=True, null=True, default="#ffffff")
     primary_text = models.CharField(max_length=10, blank=True, null=True, default="#000000")
     secondary_text = models.CharField(max_length=10, blank=True, null=True, default="#000000")
+    date_modified = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return self.username
@@ -31,6 +32,7 @@ class Sport(models.Model):
     objects = models.Manager()
     name = models.CharField(max_length=25)
     icon = models.ImageField(upload_to="images/sports", blank=True, null=True)
+    date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -41,6 +43,7 @@ class Country(models.Model):
     name = models.CharField(max_length=100)
     short_name = models.CharField(max_length=25)
     abbreviation = models.CharField(max_length=5)
+    date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -51,6 +54,7 @@ class State(models.Model):
     name = models.CharField(max_length=100)
     country = models.ForeignKey(Country, related_name='state_country', on_delete=models.CASCADE)
     abbreviation = models.CharField(max_length=5)
+    date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -64,6 +68,7 @@ class City(models.Model):
     country = models.ForeignKey(Country, related_name='city_country', on_delete=models.CASCADE)
     latitude = models.FloatField(default=0)
     longitude = models.FloatField(default=0)
+    date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
