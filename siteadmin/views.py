@@ -53,3 +53,75 @@ def new_user(request):
 
     args.update(csrf(request))
     return render(request, 'new_user.html', args)
+
+
+@login_required(login_url='/login/')
+def user_details(request, username):
+
+    if request.method == 'POST':
+        form = NewCompetitionForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Competition has been created.')
+            return redirect(reverse('site_home'))
+        else:
+            messages.error(request, 'Sorry, we were unable to create the competition. Please try again.')
+
+    else:
+        form = NewCompetitionForm()
+
+    args = {
+        'form': form,
+        'button_text': 'Create Competition'
+    }
+
+    args.update(csrf(request))
+    return render(request, 'user_details.html', args)
+
+
+@login_required(login_url='/login/')
+def sport_details(request, name):
+
+    if request.method == 'POST':
+        form = NewCompetitionForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Competition has been created.')
+            return redirect(reverse('site_home'))
+        else:
+            messages.error(request, 'Sorry, we were unable to create the competition. Please try again.')
+
+    else:
+        form = NewCompetitionForm()
+
+    args = {
+        'form': form,
+        'button_text': 'Create Competition'
+    }
+
+    args.update(csrf(request))
+    return render(request, 'sport_details.html', args)
+
+
+@login_required(login_url='/login/')
+def country_details(request, abbreviation):
+
+    if request.method == 'POST':
+        form = NewCompetitionForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Competition has been created.')
+            return redirect(reverse('site_home'))
+        else:
+            messages.error(request, 'Sorry, we were unable to create the competition. Please try again.')
+
+    else:
+        form = NewCompetitionForm()
+
+    args = {
+        'form': form,
+        'button_text': 'Create Competition'
+    }
+
+    args.update(csrf(request))
+    return render(request, 'country_details.html', args)

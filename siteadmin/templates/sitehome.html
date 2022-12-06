@@ -38,7 +38,9 @@
                             {% if user.profile_picture %}
                                 <img class="list-icon" src="{{ MEDIA_URL }}{{ user.profile_picture }}" />
                             {% endif %}
-                            {{ user.username }}
+                            <a class="text-link" href="{% url 'user_details' user.username|lower %}">
+                                {{ user.username }}
+                            </a>
 
                         </div>
 
@@ -87,7 +89,9 @@
                         <div class="list-item">
 
                             <img class="list-icon" src="{{ MEDIA_URL }}{{ sport.icon }}" />
-                            {{ sport.name }}
+                            <a class="text-link" href="{% url 'sport_details' sport.name|lower %}">
+                                {{ sport.name }}
+                            </a>
 
                         </div>
 
@@ -136,7 +140,9 @@
                         <div class="list-item">
 
                             <img class="list-icon" src="{{ MEDIA_URL }}{{ country.flag }}" />
-                            {{ country.name }}
+                            <a class="text-link" href="{% url 'country_details' country.abbreviation|lower %}">
+                                {{ country.name }}
+                            </a>
                             > States
                             > Cities
 
