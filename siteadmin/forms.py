@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User
+
+from .models import User, Sport, Country
 from django.core.exceptions import ValidationError
 
 
@@ -72,4 +73,29 @@ class EditUserForm(forms.ModelForm):
             'primary_text',
             'secondary_text',
             'profile_picture',
+        ]
+
+
+# Form to edit a sport's details.
+class EditSportForm(forms.ModelForm):
+
+    class Meta:
+        model = Sport
+        fields = [
+            'name',
+            'icon',
+        ]
+
+
+# Form to edit a country's details.
+class EditCountryForm(forms.ModelForm):
+
+    class Meta:
+        model = Country
+        fields = [
+            'name',
+            'short_name',
+            'continent',
+            'abbreviation',
+            'flag',
         ]

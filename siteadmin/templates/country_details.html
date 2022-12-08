@@ -9,7 +9,8 @@
 {% block content %}
 
     <div class="page-header">
-        COUNTRY DETAILS
+        COUNTRY DETAILS<br>
+        <img class="header-icon" src="{{ MEDIA_URL }}{{ country.flag }}" /> {{ country.name }}
     </div>
 
     <!-- Form for creating a new user. -->

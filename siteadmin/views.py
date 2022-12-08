@@ -3,7 +3,7 @@ from django.template.context_processors import csrf
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from .forms import NewUserForm, EditUserForm
+from .forms import NewUserForm, EditUserForm, EditSportForm, EditCountryForm
 from cms.forms import NewCompetitionForm
 from .models import User, Sport, Country
 
@@ -49,7 +49,7 @@ def new_user(request):
                 messages.error(request, 'Sorry, we were unable to create this user. Please try again.')
 
     else:
-        form = NewUserForm(initial={'username': ''})
+        form = NewUserForm()
 
     args = {
         'form': form,
@@ -89,21 +89,24 @@ def user_details(request, username):
 @login_required(login_url='/login/')
 def sport_details(request, name):
 
+    sport = get_object_or_404(Sport, name=name)
+
     if request.method == 'POST':
-        form = NewCompetitionForm(request.POST, request.FILES)
+        form = EditSportForm(request.POST, request.FILES, instance=sport)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Competition has been created.')
+            messages.success(request, 'Details have been saved.')
             return redirect(reverse('site_home'))
         else:
-            messages.error(request, 'Sorry, we were unable to create the competition. Please try again.')
+            messages.error(request, 'Sorry, we were unable to save the updated details. Please try again.')
 
     else:
-        form = NewCompetitionForm()
+        form = EditSportForm(instance=sport)
 
     args = {
         'form': form,
-        'button_text': 'Create Competition'
+        'sport': sport,
+        'button_text': 'Save Changes'
     }
 
     args.update(csrf(request))
@@ -113,21 +116,24 @@ def sport_details(request, name):
 @login_required(login_url='/login/')
 def country_details(request, abbreviation):
 
+    country = get_object_or_404(Country, abbreviation=abbreviation)
+
     if request.method == 'POST':
-        form = NewCompetitionForm(request.POST, request.FILES)
+        form = EditCountryForm(request.POST, request.FILES, instance=country)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Competition has been created.')
+            messages.success(request, 'Details have been saved.')
             return redirect(reverse('site_home'))
         else:
-            messages.error(request, 'Sorry, we were unable to create the competition. Please try again.')
+            messages.error(request, 'Sorry, we were unable to save the updated details. Please try again.')
 
     else:
-        form = NewCompetitionForm()
+        form = EditCountryForm(instance=country)
 
     args = {
         'form': form,
-        'button_text': 'Create Competition'
+        'country': country,
+        'button_text': 'Save Changes'
     }
 
     args.update(csrf(request))

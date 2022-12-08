@@ -39,12 +39,25 @@ class Sport(models.Model):
         return self.name
 
 
+class Continent(models.Model):
+    objects = models.Manager()
+    name = models.CharField(max_length=100)
+    abbreviation = models.CharField(max_length=5)
+    date_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Country(models.Model):
     objects = models.Manager()
     name = models.CharField(max_length=100)
     short_name = models.CharField(max_length=25)
+    continent = models.ForeignKey(Continent, related_name='country_continent', on_delete=models.CASCADE, blank=True, null=True)
     abbreviation = models.CharField(max_length=5)
-    flag = models.ImageField(upload_to="images/countries", blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    is_independent = models.BooleanField(default=True)
+    flag = models.ImageField(upload_to="images/countries")
     date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
