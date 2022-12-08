@@ -49,6 +49,14 @@ def login(request):
     return render(request, 'login.html', args)
 
 
+# Log a user out from the site.
+def logout(request):
+    auth.logout(request)
+    messages.success(request, 'You have successfully logged out.')
+
+    return redirect(reverse('login'))
+
+
 @login_required(login_url='/login/')
 def new_competition(request):
 

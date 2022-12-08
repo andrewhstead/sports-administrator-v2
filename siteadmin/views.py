@@ -4,7 +4,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .forms import NewUserForm, EditUserForm
-from cms.forms import LoginForm, NewCompetitionForm
+from cms.forms import NewCompetitionForm
 from .models import User, Sport, Country
 
 
@@ -49,7 +49,7 @@ def new_user(request):
                 messages.error(request, 'Sorry, we were unable to create this user. Please try again.')
 
     else:
-        form = NewUserForm()
+        form = NewUserForm(initial={'username': ''})
 
     args = {
         'form': form,

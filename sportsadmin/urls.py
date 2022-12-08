@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cms/', include('cms.urls')),
     path('login/', cms_views.login, name='login'),
+    path('logout/', cms_views.logout, name="logout"),
     path('site_admin/', include('siteadmin.urls')),
 ]
 

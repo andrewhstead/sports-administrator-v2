@@ -44,6 +44,9 @@ h1 {
     font-style: italic;
     font-size: 1.5em;
 }
+.right-text {
+    float: right;
+}
 
 #cms-page {
     margin: 10px;
