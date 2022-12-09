@@ -77,7 +77,7 @@ class EditUserForm(forms.ModelForm):
 
 
 # Form to edit a sport's details.
-class EditSportForm(forms.ModelForm):
+class SportForm(forms.ModelForm):
 
     class Meta:
         model = Sport
@@ -88,7 +88,7 @@ class EditSportForm(forms.ModelForm):
 
 
 # Form to edit a country's details.
-class EditCountryForm(forms.ModelForm):
+class CountryForm(forms.ModelForm):
 
     class Meta:
         model = Country

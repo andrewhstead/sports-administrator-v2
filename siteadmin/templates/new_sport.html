@@ -2,18 +2,17 @@
 
 {% block title %}
 
-	<title>Sport Details: {{ sport.name }} | Site Admin | SportsAdministrator</title>
+	<title>Add New Sport | Site Admin | SportsAdministrator</title>
 
 {% endblock %}
 
 {% block content %}
 
     <div class="page-header">
-        SPORT DETAILS:<br>
-        <img class="header-icon" src="{{ MEDIA_URL }}{{ sport.icon }}" />{{ sport.name }}
+        ADD NEW SPORT
     </div>
 
-    <!-- Form for editing a sport. -->
+    <!-- Form for adding a new sport. -->
     <form id="default-form" enctype="multipart/form-data" role="form" method="post">
         {% csrf_token %}
         {{ form.as_p }}

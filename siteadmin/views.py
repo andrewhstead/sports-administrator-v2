@@ -3,7 +3,7 @@ from django.template.context_processors import csrf
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from .forms import NewUserForm, EditUserForm, EditSportForm, EditCountryForm
+from .forms import NewUserForm, EditUserForm, SportForm, CountryForm
 from cms.forms import NewCompetitionForm
 from .models import User, Sport, Country
 
@@ -92,7 +92,7 @@ def sport_details(request, name):
     sport = get_object_or_404(Sport, name=name)
 
     if request.method == 'POST':
-        form = EditSportForm(request.POST, request.FILES, instance=sport)
+        form = SportForm(request.POST, request.FILES, instance=sport)
         if form.is_valid():
             form.save()
             messages.success(request, 'Details have been saved.')
@@ -101,7 +101,7 @@ def sport_details(request, name):
             messages.error(request, 'Sorry, we were unable to save the updated details. Please try again.')
 
     else:
-        form = EditSportForm(instance=sport)
+        form = SportForm(instance=sport)
 
     args = {
         'form': form,
@@ -114,12 +114,36 @@ def sport_details(request, name):
 
 
 @login_required(login_url='/login/')
+def new_sport(request):
+
+    if request.method == 'POST':
+        form = SportForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New sport has been added.')
+            return redirect(reverse('site_home'))
+        else:
+            messages.error(request, 'Sorry, we were unable to add the new sport. Please try again.')
+
+    else:
+        form = SportForm()
+
+    args = {
+        'form': form,
+        'button_text': 'Save Details'
+    }
+
+    args.update(csrf(request))
+    return render(request, 'new_sport.html', args)
+
+
+@login_required(login_url='/login/')
 def country_details(request, abbreviation):
 
     country = get_object_or_404(Country, abbreviation=abbreviation)
 
     if request.method == 'POST':
-        form = EditCountryForm(request.POST, request.FILES, instance=country)
+        form = CountryForm(request.POST, request.FILES, instance=country)
         if form.is_valid():
             form.save()
             messages.success(request, 'Details have been saved.')
@@ -128,7 +152,7 @@ def country_details(request, abbreviation):
             messages.error(request, 'Sorry, we were unable to save the updated details. Please try again.')
 
     else:
-        form = EditCountryForm(instance=country)
+        form = CountryForm(instance=country)
 
     args = {
         'form': form,
