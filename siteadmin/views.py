@@ -162,3 +162,28 @@ def country_details(request, abbreviation):
 
     args.update(csrf(request))
     return render(request, 'country_details.html', args)
+
+
+@login_required(login_url='/login/')
+def new_country(request):
+
+    if request.method == 'POST':
+        form = CountryForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New country has been added.')
+            return redirect(reverse('site_home'))
+        else:
+            messages.error(request, 'Sorry, we were unable to add the new country. Please try again.')
+
+    else:
+        form = CountryForm()
+
+    args = {
+        'form': form,
+        'button_text': 'Save Details'
+    }
+
+    args.update(csrf(request))
+    return render(request, 'new_country.html', args)
+
