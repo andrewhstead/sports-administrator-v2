@@ -1,0 +1,56 @@
+{% extends "cmsbase.html" %}
+
+{% block title %}
+
+    <title>All Countries | Site Admin | SportsAdministrator</title>
+
+{% endblock %}
+
+{% block content %}
+
+    <h1>
+        World Database
+    </h1>
+
+    <div class="cms-header">
+
+        COUNTRIES
+
+    </div>
+
+    <div class="cms-details">
+
+        {% if countries %}
+
+            {% for country in countries %}
+
+                <div class="list-item">
+
+                    <img class="list-icon" src="{{ MEDIA_URL }}{{ country.flag }}" />
+                    <a class="text-link" href="{% url 'country_details' country.abbreviation %}">
+                        {{ country.name }}
+                    </a>
+                    > States
+                    > Cities
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            No countries have been added yet.
+
+        {% endif %}
+
+    </div>
+
+    <div class="cms-link-button">
+
+        <a href="{% url 'new_country' %}">
+            Add New
+        </a>
+
+    </div>
+
+{% endblock %}

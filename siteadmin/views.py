@@ -172,7 +172,7 @@ def new_country(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'New country has been added.')
-            return redirect(reverse('site_home'))
+            return redirect(reverse('all_countries'))
         else:
             messages.error(request, 'Sorry, we were unable to add the new country. Please try again.')
 
@@ -187,3 +187,15 @@ def new_country(request):
     args.update(csrf(request))
     return render(request, 'new_country.html', args)
 
+
+@login_required(login_url='/login/')
+def all_countries(request):
+
+    countries = Country.objects.all()
+
+    args = {
+        'countries': countries
+    }
+
+    args.update(csrf(request))
+    return render(request, 'all_countries.html', args)
