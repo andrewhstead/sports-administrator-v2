@@ -1,10 +1,10 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.context_processors import csrf
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .forms import NewUserForm, EditUserForm, SportForm, CountryForm
-from cms.forms import NewCompetitionForm
 from .models import User, Sport, Country
 
 
@@ -193,8 +193,30 @@ def all_countries(request):
 
     countries = Country.objects.all()
 
+    # Use pagination to restrict the number displayed at any one time.
+    country_list = Paginator(countries, 25)
+
+    page = request.GET.get('page')
+
+    if page:
+        current_page = int(page)
+    else:
+        current_page = 1
+
+    page_count = country_list.num_pages
+
+    page = request.GET.get('page')
+    try:
+        list_section = country_list.page(page)
+    except EmptyPage:
+        list_section = country_list.page(country_list.num_pages)
+    except PageNotAnInteger:
+        list_section = country_list.page(1)
+
     args = {
-        'countries': countries
+        'list_section': list_section,
+        "current_page": current_page,
+        "page_count": page_count
     }
 
     args.update(csrf(request))

@@ -133,3 +133,60 @@ h1 {
 .header-icon {
     height: 20px;
 }
+
+/* Flexbox styles for pagination */
+.pagination-links {
+    display: flex;
+    background-color: #6bdc73;
+    border-radius: 0 0 10px 10px;
+    color: white;
+}
+.pagination-section {
+    flex: 1;
+}
+.page-detail {
+    text-align: center;
+}
+.first-section {
+    border-right: 1px solid #38a940;
+    text-align: center;
+}
+.last-section {
+    text-align: center;
+}
+
+/* Styles for pagination buttons */
+.pagination-button {
+    padding: 2px;
+    margin: 0;
+    background-color: #6bdc73;
+    display: inline;
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid #38a940;
+}
+.pagination-button:hover {
+    background-color: #5acb62;
+}
+.pagination-button:last-of-type {
+    border-right: none;
+}
+.pagination-button a, .pagination-current a, .first-section a, .last-section a {
+    color: white;
+    text-decoration: none;
+}
+.pagination-button a:hover, .pagination-current a:hover, .first-section a:hover, .last-section a:hover {
+    text-decoration: underline;
+}
+.pagination-current {
+    padding: 2px;
+    margin: 0;
+    background-color: #49ba51;
+    display: inline;
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid #38a940;
+}
+.pagination-current:last-of-type {
+    border-right: none;
+}
