@@ -59,11 +59,11 @@
 
         {% for section in list_section.paginator.page_range %}
             {% if section == current_page %}
-                <div class="pagination-current">
+                <div class="pagination-section pagination-current">
                     {{ section }}
                 </div>
             {% else %}
-                <div class="pagination-button">
+                <div class="pagination-section pagination-button">
                     <a href="?page={{ section }}">
                         {{ section }}
                     </a>
