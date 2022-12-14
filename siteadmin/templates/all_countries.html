@@ -12,52 +12,21 @@
         World Database
     </h1>
 
-    <div class="cms-header">
-
-        COUNTRIES
-
-    </div>
-
-    <div class="cms-details">
-
-        {% if list_section %}
-
-            {% for country in list_section %}
-
-                <div class="list-item">
-
-                    <img class="list-icon" src="{{ MEDIA_URL }}{{ country.flag }}" />
-                    <a class="text-link" href="{% url 'country_details' country.abbreviation %}">
-                        {{ country.name }}
-                    </a>
-                    > States
-                    > Cities
-
-                </div>
-
-            {% endfor %}
-
-        {% else %}
-
-            No countries have been added yet.
-
-        {% endif %}
-
-    </div>
+    {% include 'countries.html' %}
 
     <!-- Pagination links. -->
 
     <div class="pagination-links">
 
-        <div class="pagination-section first-section">
-            {% if list_section.has_previous %}
-                <a class="text-link" href="?page={{ list_section.previous_page_number }}">
+        <div class="pagination-section pagination-button">
+            {% if countries.has_previous %}
+                <a class="text-link" href="?page={{ countries.previous_page_number }}">
                     &lt;
                 </a>
             {% endif %}
         </div>
 
-        {% for section in list_section.paginator.page_range %}
+        {% for section in countries.paginator.page_range %}
             {% if section == current_page %}
                 <div class="pagination-section pagination-current">
                     {{ section }}
@@ -71,9 +40,9 @@
             {% endif %}
         {% endfor %}
 
-        <div class="pagination-section last-section">
-            {% if list_section.has_next %}
-                <a class="text-link" href="?page={{ list_section.next_page_number }}">
+        <div class="pagination-section pagination-button">
+            {% if countries.has_next %}
+                <a class="text-link" href="?page={{ countries.next_page_number }}">
                     &gt;
                 </a>
             {% endif %}

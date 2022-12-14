@@ -191,10 +191,10 @@ def new_country(request):
 @login_required(login_url='/login/')
 def all_countries(request):
 
-    countries = Country.objects.all()
+    all_countries = Country.objects.all()
 
     # Use pagination to restrict the number displayed at any one time.
-    country_list = Paginator(countries, 25)
+    country_list = Paginator(all_countries, 25)
 
     page = request.GET.get('page')
 
@@ -207,14 +207,14 @@ def all_countries(request):
 
     page = request.GET.get('page')
     try:
-        list_section = country_list.page(page)
+        countries = country_list.page(page)
     except EmptyPage:
-        list_section = country_list.page(country_list.num_pages)
+        countries = country_list.page(country_list.num_pages)
     except PageNotAnInteger:
-        list_section = country_list.page(1)
+        countries = country_list.page(1)
 
     args = {
-        'list_section': list_section,
+        'countries': countries,
         "current_page": current_page,
         "page_count": page_count
     }
