@@ -5,7 +5,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .forms import NewUserForm, EditUserForm, SportForm, CountryForm
-from .models import User, Sport, Country
+from .models import User, Sport, Country, State
 
 
 # Create your views here.
@@ -141,6 +141,7 @@ def new_sport(request):
 def country_details(request, abbreviation):
 
     country = get_object_or_404(Country, abbreviation=abbreviation)
+    states = country.state_country.all()
 
     if request.method == 'POST':
         form = CountryForm(request.POST, request.FILES, instance=country)
@@ -157,7 +158,8 @@ def country_details(request, abbreviation):
     args = {
         'form': form,
         'country': country,
-        'button_text': 'Save Changes'
+        'button_text': 'Save Changes',
+        'states': states
     }
 
     args.update(csrf(request))
@@ -191,10 +193,10 @@ def new_country(request):
 @login_required(login_url='/login/')
 def all_countries(request):
 
-    all_countries = Country.objects.all()
+    world = Country.objects.all()
 
     # Use pagination to restrict the number displayed at any one time.
-    country_list = Paginator(all_countries, 25)
+    country_list = Paginator(world, 25)
 
     page = request.GET.get('page')
 

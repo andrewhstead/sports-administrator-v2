@@ -20,4 +20,36 @@
         <button class="cms-button" type="submit">{{ button_text }}</button>
     </form>
 
+    <div class="cms-header">
+
+        STATES
+
+    </div>
+
+    <div class="cms-details">
+
+        {% if states %}
+
+            {% for state in states %}
+
+                <div class="list-item">
+
+                    <img class="list-icon" src="{{ MEDIA_URL }}{{ state.flag }}" />
+                    <a class="text-link" href="{% url 'state_details' country.abbreviation state.abbreviation %}">
+                        {{ state.name }}
+                    </a>
+                    > Cities
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            No states have been added yet.
+
+        {% endif %}
+
+    </div>
+
 {% endblock %}

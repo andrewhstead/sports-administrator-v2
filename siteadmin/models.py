@@ -69,6 +69,7 @@ class State(models.Model):
     name = models.CharField(max_length=100)
     country = models.ForeignKey(Country, related_name='state_country', on_delete=models.CASCADE)
     abbreviation = models.CharField(max_length=5)
+    flag = models.ImageField(upload_to="images/states", blank=True, null=True)
     date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
