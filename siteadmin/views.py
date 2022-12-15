@@ -141,7 +141,7 @@ def new_sport(request):
 def country_details(request, abbreviation):
 
     country = get_object_or_404(Country, abbreviation=abbreviation)
-    states = country.state_country.all()
+    states = country.state_country.all().order_by('name')[:10]
 
     if request.method == 'POST':
         form = CountryForm(request.POST, request.FILES, instance=country)
@@ -216,6 +216,33 @@ def new_country(request):
 
     args.update(csrf(request))
     return render(request, 'new_country.html', args)
+
+
+@login_required(login_url='/login/')
+def new_state(request, country):
+
+    country = get_object_or_404(Country, abbreviation=country)
+
+    if request.method == 'POST':
+        form = StateForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New state has been added.')
+            return redirect(reverse('state_list', kwargs={'country': country.abbreviation}))
+        else:
+            messages.error(request, 'Sorry, we were unable to add the new state. Please try again.')
+
+    else:
+        form = StateForm(initial={'country': country})
+
+    args = {
+        'country': country,
+        'form': form,
+        'button_text': 'Save Details'
+    }
+
+    args.update(csrf(request))
+    return render(request, 'new_state.html', args)
 
 
 @login_required(login_url='/login/')

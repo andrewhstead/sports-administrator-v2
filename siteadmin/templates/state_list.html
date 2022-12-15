@@ -14,35 +14,35 @@
 
     <div class="cms-header">
 
-                STATES
+        STATES
 
-            </div>
+    </div>
 
-            <div class="cms-details">
+    <div class="cms-details">
 
-                {% if all_states %}
+        {% if all_states %}
 
-                    {% for state in all_states %}
+            {% for state in all_states %}
 
-                        <div class="list-item">
+                <div class="list-item">
 
-                            <img class="list-icon" src="{{ MEDIA_URL }}{{ state.flag }}" />
-                            <a class="text-link" href="{% url 'country_details' state.abbreviation %}">
-                                {{ state.name }}
-                            </a>
-                            > Cities
+                    <img class="list-icon" src="{{ MEDIA_URL }}{{ state.flag }}" />
+                    <a class="text-link" href="{% url 'country_details' state.abbreviation %}">
+                        {{ state.name }}
+                    </a>
+                    > Cities
 
-                        </div>
+                </div>
 
-                    {% endfor %}
+            {% endfor %}
 
-                {% else %}
+        {% else %}
 
-                    No states have been added for this country.
+            No states have been added for this country.
 
-                {% endif %}
+        {% endif %}
 
-            </div>
+    </div>
 
     <!-- Pagination links. -->
 
@@ -82,7 +82,7 @@
 
     <div class="cms-link-button">
 
-        <a href="{% url 'new_country' %}">
+        <a href="{% url 'new_state' country.abbreviation %}">
             Add New
         </a>
 

@@ -1,0 +1,24 @@
+{% extends "cmsbase.html" %}
+
+{% block title %}
+
+	<title>Add New State: { country } | Site Admin | SportsAdministrator</title>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="page-header">
+        <img class="header-icon" src="{{ MEDIA_URL }}{{ country.flag }}" /> {{ country.name }}
+        <br>
+        ADD NEW STATE
+    </div>
+
+    <!-- Form for adding a new country. -->
+    <form id="default-form" enctype="multipart/form-data" role="form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="cms-button" type="submit">{{ button_text }}</button>
+    </form>
+
+{% endblock %}
