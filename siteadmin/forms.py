@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import User, Sport, Country
+from .models import User, Sport, Country, State
 from django.core.exceptions import ValidationError
 
 
@@ -96,6 +96,19 @@ class CountryForm(forms.ModelForm):
             'name',
             'short_name',
             'continent',
+            'abbreviation',
+            'flag',
+        ]
+
+
+# Form to edit a country's details.
+class StateForm(forms.ModelForm):
+
+    class Meta:
+        model = State
+        fields = [
+            'name',
+            'country',
             'abbreviation',
             'flag',
         ]

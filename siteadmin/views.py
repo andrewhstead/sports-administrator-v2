@@ -4,7 +4,7 @@ from django.template.context_processors import csrf
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from .forms import NewUserForm, EditUserForm, SportForm, CountryForm
+from .forms import NewUserForm, EditUserForm, SportForm, CountryForm, StateForm
 from .models import User, Sport, Country, State
 
 
@@ -164,6 +164,34 @@ def country_details(request, abbreviation):
 
     args.update(csrf(request))
     return render(request, 'country_details.html', args)
+
+
+@login_required(login_url='/login/')
+def state_details(request, country, state):
+
+    country = get_object_or_404(Country, abbreviation=country)
+    state = get_object_or_404(State, country=country.id, abbreviation=state)
+
+    if request.method == 'POST':
+        form = StateForm(request.POST, request.FILES, instance=state)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Details have been saved.')
+            return redirect(reverse('site_home'))
+        else:
+            messages.error(request, 'Sorry, we were unable to save the updated details. Please try again.')
+
+    else:
+        form = StateForm(instance=state)
+
+    args = {
+        'form': form,
+        'state': state,
+        'button_text': 'Save Changes'
+    }
+
+    args.update(csrf(request))
+    return render(request, 'state_details.html', args)
 
 
 @login_required(login_url='/login/')

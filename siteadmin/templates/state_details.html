@@ -1,0 +1,23 @@
+{% extends "cmsbase.html" %}
+
+{% block title %}
+
+	<title>State Details: {{ state.name }} | Site Admin | SportsAdministrator</title>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="page-header">
+        STATE DETAILS<br>
+        <img class="header-icon" src="{{ MEDIA_URL }}{{ state.flag }}" /> {{ state.name }}
+    </div>
+
+    <!-- Form for creating a new user. -->
+    <form id="default-form" enctype="multipart/form-data" role="form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="cms-button" type="submit">{{ button_text }}</button>
+    </form>
+
+{% endblock %}
