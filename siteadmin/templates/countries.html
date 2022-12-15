@@ -16,7 +16,10 @@
                             <a class="text-link" href="{% url 'country_details' country.abbreviation %}">
                                 {{ country.short_name }}
                             </a>
-                            > States
+                            >
+                            <a class="text-link" href="{% url 'state_list' country.abbreviation %}">
+                                States
+                            </a>
                             > Cities
 
                         </div>

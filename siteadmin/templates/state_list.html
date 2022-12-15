@@ -1,0 +1,91 @@
+{% extends "cmsbase.html" %}
+
+{% block title %}
+
+    <title>All States: { country } | Site Admin | SportsAdministrator</title>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="page-header">
+        <img class="header-icon" src="{{ MEDIA_URL }}{{ country.flag }}" /> {{ country.name }}
+    </div>
+
+    <div class="cms-header">
+
+                STATES
+
+            </div>
+
+            <div class="cms-details">
+
+                {% if all_states %}
+
+                    {% for state in all_states %}
+
+                        <div class="list-item">
+
+                            <img class="list-icon" src="{{ MEDIA_URL }}{{ state.flag }}" />
+                            <a class="text-link" href="{% url 'country_details' state.abbreviation %}">
+                                {{ state.name }}
+                            </a>
+                            > Cities
+
+                        </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    No states have been added for this country.
+
+                {% endif %}
+
+            </div>
+
+    <!-- Pagination links. -->
+
+    <div class="pagination-links">
+
+        <div class="pagination-section pagination-button">
+            {% if all_states.has_previous %}
+                <a class="text-link" href="?page={{ all_states.previous_page_number }}">
+                    &lt;
+                </a>
+            {% endif %}
+        </div>
+
+        {% for section in all_states.paginator.page_range %}
+            {% if section == current_page %}
+                <div class="pagination-section pagination-current">
+                    {{ section }}
+                </div>
+            {% else %}
+                <div class="pagination-section pagination-button">
+                    <a href="?page={{ section }}">
+                        {{ section }}
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <div class="pagination-section pagination-button">
+            {% if all_states.has_next %}
+                <a class="text-link" href="?page={{ all_states.next_page_number }}">
+                    &gt;
+                </a>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="cms-link-button">
+
+        <a href="{% url 'new_country' %}">
+            Add New
+        </a>
+
+    </div>
+
+{% endblock %}

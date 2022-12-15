@@ -221,7 +221,7 @@ def new_country(request):
 @login_required(login_url='/login/')
 def all_countries(request):
 
-    world = Country.objects.all()
+    world = Country.objects.all().order_by('short_name')
 
     # Use pagination to restrict the number displayed at any one time.
     country_list = Paginator(world, 25)
@@ -251,3 +251,42 @@ def all_countries(request):
 
     args.update(csrf(request))
     return render(request, 'all_countries.html', args)
+
+
+@login_required(login_url='/login/')
+def state_list(request, country):
+
+    country = get_object_or_404(Country, abbreviation=country)
+    states = State.objects.filter(country=country).order_by('name')
+
+    # Use pagination to restrict the number displayed at any one time.
+    states_page = Paginator(states, 25)
+
+    page = request.GET.get('page')
+
+    if page:
+        current_page = int(page)
+    else:
+        current_page = 1
+
+    page_count = states_page.num_pages
+    state_total = states.count()
+
+    page = request.GET.get('page')
+    try:
+        all_states = states_page.page(page)
+    except EmptyPage:
+        all_states = states_page.page(states_page.num_pages)
+    except PageNotAnInteger:
+        all_states = states_page.page(1)
+
+    args = {
+        'country': country,
+        'all_states': all_states,
+        "current_page": current_page,
+        "state_total": state_total,
+        "page_count": page_count
+    }
+
+    args.update(csrf(request))
+    return render(request, 'state_list.html', args)
