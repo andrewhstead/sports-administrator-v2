@@ -141,7 +141,9 @@ def new_sport(request):
 def country_details(request, abbreviation):
 
     country = get_object_or_404(Country, abbreviation=abbreviation)
-    states = country.state_country.all().order_by('name')[:10]
+    all_states = country.state_country.all().order_by('name')
+    state_total = all_states.count()
+    states = all_states[:10]
 
     if request.method == 'POST':
         form = CountryForm(request.POST, request.FILES, instance=country)
@@ -158,6 +160,7 @@ def country_details(request, abbreviation):
     args = {
         'form': form,
         'country': country,
+        'state_total': state_total,
         'button_text': 'Save Changes',
         'states': states
     }
@@ -297,7 +300,6 @@ def state_list(request, country):
         current_page = 1
 
     page_count = states_page.num_pages
-    state_total = states.count()
 
     page = request.GET.get('page')
     try:
@@ -311,7 +313,6 @@ def state_list(request, country):
         'country': country,
         'all_states': all_states,
         "current_page": current_page,
-        "state_total": state_total,
         "page_count": page_count
     }
 
