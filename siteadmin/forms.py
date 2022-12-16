@@ -98,7 +98,13 @@ class CountryForm(forms.ModelForm):
             'continent',
             'abbreviation',
             'flag',
+            'is_active',
+            'is_independent',
         ]
+        labels = {
+            'is_active': 'Active',
+            'is_independent': 'Independent',
+        }
 
 
 # Form to edit a country's details.

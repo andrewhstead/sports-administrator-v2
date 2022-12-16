@@ -166,3 +166,7 @@ h1 {
 .pagination-current {
     background-color: #49ba51;
 }
+
+#default-form label {
+    display: inline;
+}

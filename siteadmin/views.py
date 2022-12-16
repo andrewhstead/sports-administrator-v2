@@ -205,7 +205,7 @@ def new_country(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'New country has been added.')
-            return redirect(reverse('all_countries'))
+            return redirect(reverse('site_home'))
         else:
             messages.error(request, 'Sorry, we were unable to add the new country. Please try again.')
 
