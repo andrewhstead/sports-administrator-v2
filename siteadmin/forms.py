@@ -100,10 +100,12 @@ class CountryForm(forms.ModelForm):
             'flag',
             'is_active',
             'is_independent',
+            'is_recognised',
         ]
         labels = {
             'is_active': 'Active',
             'is_independent': 'Independent',
+            'is_recognised': 'Recognised',
         }
 
 

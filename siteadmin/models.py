@@ -57,6 +57,7 @@ class Country(models.Model):
     abbreviation = models.CharField(max_length=5)
     is_active = models.BooleanField(default=True)
     is_independent = models.BooleanField(default=True)
+    is_recognised = models.BooleanField(default=True)
     flag = models.ImageField(upload_to="images/countries")
     date_modified = models.DateTimeField(auto_now=True)
 
